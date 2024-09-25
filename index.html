@@ -22,10 +22,12 @@
                 <canvas width="200" height="200" class="canvas"></canvas>
                 <section class="editor-control-panel">
                     <input type="text" class="editor-txt" placeholder="enter meme text here" oninput="onSetLineTxt(this)" />
+                    <a href="#" onclick="downloadMeme(this)" download="my-meme.jpg">download Meme</a>
                 </section>
             </section>
         </main>
         <footer></footer>
+        <script src="js/services/upload.service.js"></script>
         <script src="js/services/storage.service.js"></script>
         <script src="js/services/utils.service.js"></script>
         <script src="js/services/meme.service.js"></script>
