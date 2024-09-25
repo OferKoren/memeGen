@@ -1,0 +1,7 @@
+.gallary-layout {
+    display: grid;
+
+    grid-template-columns: repeat(5, 200px);
+    gap: 20px;
+    grid-auto-flow: row;
+}
