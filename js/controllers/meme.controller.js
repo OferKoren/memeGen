@@ -3,9 +3,10 @@ let gElCanvas
 let gCtx
 
 function renderMeme() {
+    // clearCanvas()
     const meme = getMeme()
     const img = getImgById(meme.selectedImgId)
-    drawImg(img.url)
+    drawMeme(img.url)
 }
 
 function initCanvas() {
@@ -13,13 +14,45 @@ function initCanvas() {
     gCtx = gElCanvas.getContext('2d')
 }
 
-function drawImg(url) {
+//draw on the canvas the img of the meme
+function drawMeme(url) {
     const elImg = new Image()
     elImg.src = url
-    console.log(elImg)
 
     //waiting for img to load and then show it
     elImg.onload = () => {
         gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
+        //*drawing the lines after the img finish to load so it wont be behind the txt
+        drawLines()
     }
+}
+
+function drawLines() {
+    const { lines } = getMeme()
+
+    lines.forEach((line, idx) => {
+        const { color, txt, size, fontFamily } = line
+        gCtx.font = `${size}px ${fontFamily}`
+        gCtx.strokeStyle = color
+        gCtx.fillStyle = `white`
+        // gCtx.textAlign = 'center'
+        gCtx.textBaseline = 'middle'
+        gCtx.lineWidth = 2
+
+        //todo to add if to act differenty for first and second lines
+        gCtx.strokeText(txt, 10, 10)
+        gCtx.fillText(txt, 10, 10)
+    })
+
+    // Set the stroke width
+}
+
+function onSetLineTxt({ value }) {
+    // console.log(value)
+    setLineTxt(value)
+    renderMeme()
+}
+
+function clearCanvas() {
+    gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
 }
