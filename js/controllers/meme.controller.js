@@ -56,3 +56,14 @@ function onSetLineTxt({ value }) {
 function clearCanvas() {
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height)
 }
+
+function onChangeStrokeColor({ value }) {
+    //*value in this situation is the stroke clr from the input
+    changeStroke(value)
+    renderMeme()
+}
+function onChangeFont({ dataset }) {
+    const diff = +dataset.diff
+    changeFont(diff)
+    renderMeme()
+}

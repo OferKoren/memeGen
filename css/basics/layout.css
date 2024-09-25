@@ -5,3 +5,17 @@
     gap: 20px;
     grid-auto-flow: row;
 }
+.editor-layout {
+    display: grid;
+
+    grid-auto-flow: column;
+    gap: 10px;
+    grid-template-columns: repeat(2, max-content);
+}
+.control-panel-layout {
+    display: grid;
+    grid-template-rows: repeat(3, min-content);
+}
+.control-panel-layout a {
+    grid-column: 2 / span 2;
+}

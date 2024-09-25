@@ -19,11 +19,17 @@
             <section class="meme editor">
                 <h2>meme editor</h2>
                 <!-- <img src="imgs/1.jpg" alt="" /> -->
-                <canvas width="200" height="200" class="canvas"></canvas>
-                <section class="editor-control-panel">
-                    <input type="text" class="editor-txt" placeholder="enter meme text here" oninput="onSetLineTxt(this)" />
-                    <a href="#" onclick="downloadMeme(this)" download="my-meme.jpg">download Meme</a>
-                </section>
+                <div class="main-editor editor-layout">
+                    <canvas width="200" height="200" class="canvas"></canvas>
+                    <section class="editor-control-panel control-panel-layout">
+                        <input type="text" class="editor-txt" placeholder="enter meme text here" oninput="onSetLineTxt(this)" />
+                        <a href="#" onclick="downloadMeme(this)" download="my-meme.jpg">download Meme</a>
+
+                        <input type="color" class="stroke-clr" oninput="onChangeStrokeColor(this)" />
+                        <button class="font-inc" onclick="onChangeFont(this)" data-diff="1">F+</button>
+                        <button class="font-dec" onclick="onChangeFont(this)" data-diff="-1">F-</button>
+                    </section>
+                </div>
             </section>
         </main>
         <footer></footer>

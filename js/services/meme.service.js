@@ -37,3 +37,14 @@ function imgSelect(id) {
     console.log(id)
     gMeme.selectedImgId = id
 }
+//*change storke
+function changeStroke(strokeClr, lineIdx = 0) {
+    const line = gMeme.lines[lineIdx]
+    line.color = strokeClr
+}
+
+//*change fontSize
+function changeFont(diff, lineIdx = 0) {
+    const line = gMeme.lines[lineIdx]
+    line.size = line.size + diff
+}
