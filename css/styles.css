@@ -8,6 +8,6 @@
 @import url('./basics/helpers.css');
 
 /* COMPONENTS */
-
+@import url('./components/canvas.css');
 /* Media Queries */
 @import url('./setup/mq.css');
