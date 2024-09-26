@@ -64,7 +64,7 @@ function drawLines() {
                 pos.y = 5
             } else if (idx === 1) {
                 pos.x = 5
-                pos.y = 95
+                pos.y = 90
             } else {
                 pos.x = 5 + (idx - 3)
                 pos.y = 50 + (idx - 3)
