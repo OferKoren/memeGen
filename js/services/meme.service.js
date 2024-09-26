@@ -56,12 +56,16 @@ function addLine() {
     gMeme.lines.push(_createLine())
 }
 
-function switchLine(isNew) {
+function switchLine(isNew, idx) {
     if (isNew === 'new') {
         gMeme.selectedLineIdx = gMeme.lines.length - 1
         return
     }
-
+    //what happens when mouse clicked
+    if (idx || idx === 0) {
+        gMeme.selectedLineIdx = idx
+        return
+    }
     if (gMeme.selectedLineIdx === null) {
         gMeme.selectedLineIdx = 0
         return
@@ -78,6 +82,15 @@ function updateLineWidth() {
     line.width = textMetrics.width
 }
 
+function isOnLine(pos) {
+    const { lines } = gMeme
+    const idx = lines.findIndex((line) => {
+        const isInWidth = pos.x >= line.pos.x && pos.x <= line.pos.x + line.width
+        const isInHeight = pos.y >= line.pos.y && pos.y <= line.pos.y + line.size
+        return isInHeight && isInWidth
+    })
+    return idx
+}
 // function setLineWidth(txt, size, fontFamily) {
 //     gCtx.font = `${size}px ${fontFamily}`
 //     gCtx.lineWidth = 2

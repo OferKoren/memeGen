@@ -1,7 +1,9 @@
 'use strict'
 let gElCanvas
 let gCtx
-let gElImg
+
+const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
+
 function renderMeme() {
     // clearCanvas()
     console.log('render meme')
@@ -13,16 +15,17 @@ function renderMeme() {
 function initCanvas() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
+    addListeners()
 }
 
 //draw on the canvas the img of the meme
 function drawMeme(url) {
-    gElImg = new Image()
-    gElImg.src = url
+    const ElImg = new Image()
+    ElImg.src = url
 
     //waiting for img to load and then show it
-    gElImg.onload = () => {
-        gCtx.drawImage(gElImg, 0, 0, gElCanvas.width, gElCanvas.height)
+    ElImg.onload = () => {
+        gCtx.drawImage(ElImg, 0, 0, gElCanvas.width, gElCanvas.height)
         //*drawing the lines after the img finish to load so it wont be behind the txt
         drawLines()
     }
@@ -36,7 +39,7 @@ function drawLines() {
         gCtx.font = `${size}px ${fontFamily}`
         gCtx.strokeStyle = color
         gCtx.fillStyle = `white`
-        gCtx.textBaseline = 'middle'
+        gCtx.textBaseline = 'top'
         gCtx.lineWidth = 2
 
         line.width = gCtx.measureText(txt).width
@@ -114,21 +117,66 @@ function onAddLine() {
 
     onSwitchLine('new')
 }
-function onSwitchLine(isNew) {
+function onSwitchLine(isNew = 'not', idx) {
     renderMeme()
-    switchLine(isNew)
+    switchLine(isNew, idx)
     renderLineProperties()
 }
+
 function renderLineFrame() {
     const { selectedLineIdx, lines } = getMeme()
     const line = lines[selectedLineIdx]
     const pos = line.pos
 
-    const framePos = { x: pos.x - 5, y: pos.y - (5 + line.size / 2) }
+    const framePos = { x: pos.x - 5, y: pos.y - 5 }
 
     gCtx.beginPath()
     gCtx.strokeStyle = 'black'
     gCtx.lineWidth = 2
     gCtx.rect(framePos.x, framePos.y, line.width + 10, line.size + 10)
     gCtx.stroke()
+}
+
+function addListeners() {
+    addMouseListeners()
+    addTouchListeners()
+}
+function onDown(ev) {
+    const downPos = getEvPos(ev)
+    const lineIdx = isOnLine(downPos)
+    if (lineIdx === -1) return
+
+    document.body.style.cursor = 'grabbing'
+    onSwitchLine('not', lineIdx)
+}
+function onMove(ev) {
+    const pos = getEvPos(ev)
+    const lineIdx = isOnLine(pos)
+    if (lineIdx === -1) document.body.style.cursor = 'auto'
+    else document.body.style.cursor = 'grab'
+}
+function addMouseListeners() {
+    gElCanvas.addEventListener('mousedown', onDown)
+    gElCanvas.addEventListener('mousemove', onMove)
+}
+function addTouchListeners() {}
+
+function getEvPos(ev) {
+    let pos = {
+        x: ev.offsetX,
+        y: ev.offsetY,
+    }
+
+    if (TOUCH_EVS.includes(ev.type)) {
+        //* Prevent triggering the mouse screen dragging event
+        ev.preventDefault()
+        //* Gets the first touch point
+        ev = ev.changedTouches[0]
+        //* Calc the right pos according to the touch screen
+        pos = {
+            x: ev.clientX - ev.target.offsetLeft - ev.target.clientLeft,
+            y: ev.clientY - ev.target.offsetTop - ev.target.clientTop,
+        }
+    }
+    return pos
 }
