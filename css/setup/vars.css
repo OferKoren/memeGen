@@ -1,2 +1,7 @@
 :root {
+    /* pallet */
+    --clr-header: #ff7f00;
+    --clr-footer: #ff7f00;
+    --clr-gallary-nav: white;
+    --clr-main-body: #e3e3e3;
 }

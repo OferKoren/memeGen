@@ -6,7 +6,7 @@ const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
 
 function renderMeme() {
     // clearCanvas()
-    console.log('render meme')
+    // console.log('render meme')
     const meme = getMeme()
     const img = getImgById(meme.selectedImgId)
     drawMeme(img.url)

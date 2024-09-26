@@ -3,8 +3,23 @@
 *::before {
     box-sizing: border-box;
 }
-
+html {
+    margin: 0;
+}
+body {
+    margin: 0;
+    background-color: var(--clr-main-body);
+}
 img {
     display: block;
     width: 100%;
+}
+
+footer {
+    padding-block: 1em;
+}
+a {
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
 }

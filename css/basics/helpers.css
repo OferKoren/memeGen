@@ -10,6 +10,7 @@
 
 .flex.align-center {
     align-items: center;
+    justify-content: center;
 }
 
 /* list helpers */
@@ -22,4 +23,7 @@
 
 .colored-section {
     background-color: var(--clr-primary--2);
+}
+.hidden {
+    display: none;
 }

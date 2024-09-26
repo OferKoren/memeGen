@@ -6,17 +6,31 @@
         <link rel="stylesheet" href="css/styles.css" />
         <title>Meme generator</title>
     </head>
-    <body onload="onInit()">
-        <header>
-            <h1>HOME</h1>
+    <body onload="onInit()" class="main-layout">
+        <header class="full main-layout main-header">
+            <div class="header-content flex space-between">
+                <img src="imgs/design/LOGO.png" alt="" class="logo" />
+                <nav class="header-nav">
+                    <ul class="clean-list flex align-center">
+                        <li><a href="#" class="selected" onclick="onGallary(this)">gallary</a></li>
+                        <li>|</li>
+                        <li><a href="#" class="">about</a></li>
+                    </ul>
+                </nav>
+            </div>
         </header>
-        <main>
-            <section class="gallary">
-                <h2>gallary</h2>
+
+        <main class="main-layout full">
+            <section class="gallary main-layout full">
+                <nav class="gallary-nav main-layout full">
+                    <div class="main-nav">
+                        <input type="search" class="search-meme" oninput="onSearchMeme" placeholder="search meme" />
+                    </div>
+                </nav>
                 <section class="gallary-layout main-gallary"></section>
             </section>
 
-            <section class="meme editor">
+            <section class="meme-editor hidden">
                 <h2>meme editor</h2>
                 <!-- <img src="imgs/1.jpg" alt="" /> -->
                 <div class="main-editor editor-layout">

@@ -10,5 +10,6 @@
 /* COMPONENTS */
 @import url('./components/canvas.css');
 @import url('./components/gallary.css');
+@import url('./components/main-header.css');
 /* Media Queries */
 @import url('./setup/mq.css');

@@ -1,12 +1,16 @@
 'use strict'
 var gImgs
 var gMeme
+var gNextId = 0
+var gImgCount = 18
 function initModel() {
-    gImgs = [
+    /*  gImgs = [
         { id: 1, url: 'imgs/1.jpg', keywords: ['funny', 'cat'] },
         { id: 2, url: 'imgs/2.jpg', keywords: ['funny', 'cat'] },
         { id: 3, url: 'imgs/3.jpg', keywords: ['funny', 'cat'] },
-    ]
+    ] */
+    gImgs = []
+    _createImgs()
     gMeme = {
         selectedImgId: 1,
         selectedLineIdx: null,
@@ -15,6 +19,19 @@ function initModel() {
 }
 var gKeywordSearchCountMap = { funny: 12, cat: 16, baby: 2 }
 
+function _createImg(keywords = ['funny', 'cat']) {
+    return {
+        id: gNextId++,
+        url: `imgs/${gNextId}.jpg`,
+        keywords,
+    }
+}
+
+function _createImgs() {
+    for (let i = 0; i < gImgCount; i++) {
+        gImgs.push(_createImg())
+    }
+}
 function getMeme() {
     return gMeme
 }
@@ -36,7 +53,6 @@ function setLineTxt(txt) {
     }
 }
 function imgSelect(id) {
-    console.log(id)
     gMeme.selectedImgId = id
 }
 //*change storke
