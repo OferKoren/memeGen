@@ -100,9 +100,11 @@ function updateLineWidth() {
 
 function isOnLine(pos) {
     const { lines } = gMeme
+
     const idx = lines.findIndex((line) => {
-        const isInWidth = pos.x >= line.pos.x && pos.x <= line.pos.x + line.width
-        const isInHeight = pos.y >= line.pos.y && pos.y <= line.pos.y + line.size
+        const linePos = posToPixels(line.pos)
+        const isInWidth = pos.x >= linePos.x && pos.x <= linePos.x + line.width
+        const isInHeight = pos.y >= linePos.y && pos.y <= linePos.y + line.size
         return isInHeight && isInWidth
     })
     return idx
@@ -116,4 +118,20 @@ function isOnLine(pos) {
 //*private
 function _createLine(txt = 'enter line', color = '#ff0000', size = 20, fontFamily = 'Arial') {
     return { txt, color, size, fontFamily, pos: null, width: null, isNew: true }
+}
+//take pos in precents of dimensions and turn them to absolute
+function SavePos(line, pos) {
+    let x = line.pos.x
+    let y = line.pos.y
+
+    x = gElCanvas.width
+}
+
+function posToPixels(pos) {
+    let x = pos.x
+    let y = pos.y
+
+    x = (x * gElCanvas.width) / 100
+    y = (y * gElCanvas.height) / 100
+    return { x, y }
 }

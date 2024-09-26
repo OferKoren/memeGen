@@ -15,9 +15,16 @@ function renderMeme() {
 function initCanvas() {
     gElCanvas = document.querySelector('canvas')
     gCtx = gElCanvas.getContext('2d')
+
     addListeners()
 }
 
+function resizeCanvas() {
+    const elCanvasWrapper = document.querySelector('.canvas-wrapper')
+    // console.log(elCanvasWrapper)
+    gElCanvas.width = elCanvasWrapper.clientWidth - 10
+    gElCanvas.height = elCanvasWrapper.clientWidth - 10
+}
 //draw on the canvas the img of the meme
 function drawMeme(url) {
     const ElImg = new Image()
@@ -25,6 +32,7 @@ function drawMeme(url) {
 
     //waiting for img to load and then show it
     ElImg.onload = () => {
+        resizeCanvas()
         gCtx.drawImage(ElImg, 0, 0, gElCanvas.width, gElCanvas.height)
         //*drawing the lines after the img finish to load so it wont be behind the txt
         drawLines()
@@ -52,19 +60,19 @@ function drawLines() {
             pos = line.pos
 
             if (idx === 0) {
-                pos.x = 10
-                pos.y = 15
+                pos.x = 5
+                pos.y = 5
             } else if (idx === 1) {
-                pos.x = 10
-                pos.y = gElCanvas.height - 15
+                pos.x = 5
+                pos.y = 95
             } else {
-                pos.x = 10 + (idx - 3) * 6
-                pos.y = gElCanvas.height / 2 + (idx - 3) * 6
+                pos.x = 5 + (idx - 3)
+                pos.y = 50 + (idx - 3)
             }
         }
-
-        gCtx.strokeText(txt, pos.x, pos.y)
-        gCtx.fillText(txt, pos.x, pos.y)
+        const pixelPos = posToPixels(pos)
+        gCtx.strokeText(txt, pixelPos.x, pixelPos.y)
+        gCtx.fillText(txt, pixelPos.x, pixelPos.y)
     })
 
     if (typeof selectedLineIdx === 'number') {
@@ -126,7 +134,7 @@ function onSwitchLine(isNew = 'not', idx) {
 function renderLineFrame() {
     const { selectedLineIdx, lines } = getMeme()
     const line = lines[selectedLineIdx]
-    const pos = line.pos
+    const pos = posToPixels(line.pos)
 
     const framePos = { x: pos.x - 5, y: pos.y - 5 }
 
@@ -140,6 +148,11 @@ function renderLineFrame() {
 function addListeners() {
     addMouseListeners()
     addTouchListeners()
+
+    window.addEventListener('resize', () => {
+        resizeCanvas()
+        renderMeme()
+    })
 }
 function onDown(ev) {
     const downPos = getEvPos(ev)
@@ -179,4 +192,8 @@ function getEvPos(ev) {
         }
     }
     return pos
+}
+function onOpenStorkeInput() {
+    const elStorke = document.querySelector('.stroke-clr')
+    elStorke.click()
 }

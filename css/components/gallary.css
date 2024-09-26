@@ -2,7 +2,9 @@
     width: 100%;
     cursor: pointer;
 }
-
+.main-gallary {
+    padding-block: 1.5em;
+}
 .gallary-nav {
     background-color: white;
     padding-block: 2em;

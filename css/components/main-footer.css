@@ -1,0 +1,12 @@
+.main-footer {
+    background-color: var(--clr-footer);
+}
+.main-footer .footer-content {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.main-footer .footer-content img {
+    height: 2em;
+    width: inherit;
+}

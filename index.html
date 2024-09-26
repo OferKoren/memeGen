@@ -30,25 +30,69 @@
                 <section class="gallary-layout main-gallary"></section>
             </section>
 
-            <section class="meme-editor hidden">
-                <h2>meme editor</h2>
+            <section class="meme-editor editor-layout hidden">
                 <!-- <img src="imgs/1.jpg" alt="" /> -->
-                <div class="main-editor editor-layout">
-                    <canvas width="200" height="200" class="canvas"></canvas>
-                    <section class="editor-control-panel control-panel-layout">
-                        <input type="text" class="editor-txt" placeholder="enter meme text here" oninput="onSetLineTxt(this)" />
-                        <a href="#" onclick="downloadMeme(this)" download="my-meme.jpg">download Meme</a>
 
-                        <input type="color" class="stroke-clr" oninput="onChangeStrokeColor(this)" />
-                        <button class="font-inc" onclick="onChangeFont(this)" data-diff="1">F+</button>
-                        <button class="font-dec" onclick="onChangeFont(this)" data-diff="-1">F-</button>
-                        <button class="add line" onclick="onAddLine()">add line</button>
-                        <button class="switch-line" onclick="onSwitchLine()">switch line</button>
-                    </section>
+                <div class="canvas-wrapper">
+                    <canvas width="200" height="200" class="canvas"></canvas>
                 </div>
+                <section class="editor-control-panel control-panel-layout">
+                    <input type="text" class="editor-txt" placeholder="enter meme text here" oninput="onSetLineTxt(this)" />
+
+                    <button class="switch-line" onclick="onSwitchLine()">
+                        <img src="imgs/design/icons/up-and-down-opposite-double-arrows-side-by-side.png" alt="" />
+                    </button>
+
+                    <button class="add line" onclick="onAddLine()">
+                        <img src="imgs/design/icons/add.png" alt="" />
+                    </button>
+
+                    <button class="btn delete-line" onclick="onDeleteLine()">
+                        <img src="imgs/design/icons/trash.png" alt="" />
+                    </button>
+
+                    <button class="font-inc" onclick="onChangeFont(this)" data-diff="1">
+                        <img src="imgs/design/icons/increase font - icon.png" alt="" />
+                    </button>
+
+                    <button class="font-dec" onclick="onChangeFont(this)" data-diff="-1">
+                        <img src="imgs/design/icons/decrease font - icon.png" alt="" />
+                    </button>
+
+                    <button class="btn align-left-btn">
+                        <img src="imgs/design/icons/align-to-left.png" alt="" />
+                    </button>
+
+                    <button class="btn align-center-btn">
+                        <img src="imgs/design/icons/center-text-alignment.png" alt="" />
+                    </button>
+
+                    <button class="btn align-right-btn">
+                        <img src="imgs/design/icons/align-to-right.png" alt="" />
+                    </button>
+
+                    <select class="change-font" onchange="">
+                        <option value="Arial">Arial</option>
+                        <option value="Courier New">Courier New</option>
+                        <option value="Georgia">Georgia</option>
+                        <option value="Times New Roman">Times New Roman</option>
+                        <option value="Verdana">Verdana</option>
+                        <option value="monospace">Monospace</option>
+                    </select>
+                    <button class="btn stroke-clr-btn" onclick="onOpenStorkeInput()">
+                        <input type="color" class="stroke-clr" oninput="onChangeStrokeColor(this) " />
+                        <img src="imgs/design/icons/text stroke.png" alt="" />
+                    </button>
+                    <a href="#" onclick="downloadMeme(this)" download="my-meme.jpg">download Meme</a>
+                </section>
             </section>
         </main>
-        <footer></footer>
+        <footer class="main-footer main-layout full">
+            <div class="footer-content flex">
+                <img src="imgs/design/LOGO.png" alt="" class="logo" />
+                <h2>all rights reserved 2019</h2>
+            </div>
+        </footer>
         <script src="js/services/upload.service.js"></script>
         <script src="js/services/storage.service.js"></script>
         <script src="js/services/utils.service.js"></script>

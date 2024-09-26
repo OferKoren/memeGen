@@ -1,0 +1,22 @@
+.editor-control-panel img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+}
+.stroke-clr-btn,
+.fill-clr-btn {
+    position: relative;
+}
+.stroke-clr,
+.fill-clr {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+
+.editor-control-panel {
+    align-self: start;
+    justify-self: center;
+}

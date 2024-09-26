@@ -1,0 +1,15 @@
+/* mobile only */
+@media (max-width: 740px) {
+}
+
+/* Large */
+@media (min-width: 740px) {
+    .editor-layout {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-flow: column;
+        gap: 2em;
+    }
+    .gallary-layout {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

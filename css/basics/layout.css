@@ -15,24 +15,32 @@
 .gallary-layout {
     display: grid;
 
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
     grid-auto-flow: row;
 }
 
 .editor-layout {
     display: grid;
-
-    grid-auto-flow: column;
-    gap: 10px;
-    grid-template-columns: repeat(2, max-content);
+    grid-auto-flow: row;
 }
 
 .control-panel-layout {
     display: grid;
-    grid-template-rows: repeat(3, min-content);
+    grid-template-columns: repeat(5, minmax(1em, 3em));
+    grid-auto-flow: row !important;
+    gap: 0.6em;
+    align-items: start;
 }
-
-.control-panel-layout a {
-    grid-column: 2 / span 2;
+.control-panel-layout .editor-txt {
+    grid-column: 1/-1;
+}
+.control-panel-layout .switch-line {
+    grid-column: 2;
+}
+.control-panel-layout .font-inc {
+    grid-column: 1;
+}
+.control-panel-layout .change-font {
+    grid-column: 1 / span 3;
 }
