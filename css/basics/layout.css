@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns:
         minmax(30px, 1fr)
-        minmax(auto, 1100px)
+        minmax(auto, 980px)
         minmax(30px, 1fr);
 }
 .main-layout > *.full {
@@ -27,8 +27,8 @@
 
 .control-panel-layout {
     display: grid;
-    grid-template-columns: repeat(5, minmax(1em, 3em));
-    grid-auto-flow: row !important;
+    grid-template-columns: repeat(5, 3em);
+    grid-auto-flow: row;
     gap: 0.6em;
     align-items: start;
 }
