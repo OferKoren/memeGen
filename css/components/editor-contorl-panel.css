@@ -3,6 +3,7 @@
     max-height: 100%;
     width: auto;
     height: auto;
+    /* cursor: pointer; */
 }
 .stroke-clr-btn,
 .fill-clr-btn {
@@ -10,6 +11,7 @@
 }
 .stroke-clr,
 .fill-clr {
+    cursor: pointer;
     position: absolute;
     top: 0;
     left: 0;

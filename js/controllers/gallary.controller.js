@@ -10,6 +10,8 @@ function renderGallary() {
 }
 
 function onImgSelect({ dataset }) {
+    initMeme()
+    resizeCanvas()
     const elMemeEditoer = document.querySelector('.meme-editor ')
     const elGallary = document.querySelector('.gallary')
     const elSelected = document.querySelector('.selected')
@@ -18,10 +20,18 @@ function onImgSelect({ dataset }) {
     elGallary.classList.add('hidden')
     elSelected.classList.remove('selected')
 
-    imgSelect(+dataset.id)
+    if (dataset !== null) {
+        imgSelect(+dataset.id)
+    } else {
+        const randImgId = getRandomIntInclusive(1, gImgCount)
+        imgSelect(randImgId)
+    }
     renderMeme()
 }
-
+//*what  clicking the flexible
+function onFlexiable() {
+    onImgSelect({ dataset: null })
+}
 function onGallary(elGallaryLink) {
     elGallaryLink.classList.add('selected')
     const elMemeEditoer = document.querySelector('.meme-editor ')

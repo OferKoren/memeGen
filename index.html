@@ -23,8 +23,9 @@
         <main class="main-layout full">
             <section class="gallary main-layout full">
                 <nav class="gallary-nav main-layout full">
-                    <div class="main-nav">
+                    <div class="main-nav flex">
                         <input type="search" class="search-meme" oninput="onSearchMeme" placeholder="search meme" />
+                        <button onclick="onFlexiable()">flexible</button>
                     </div>
                 </nav>
                 <section class="gallary-layout main-gallary"></section>
@@ -39,11 +40,11 @@
                 <section class="editor-control-panel control-panel-layout">
                     <input type="text" class="editor-txt" placeholder="enter meme text here" oninput="onSetLineTxt(this)" />
 
-                    <button class="switch-line" onclick="onSwitchLine()">
+                    <button class="btn switch-line" onclick="onSwitchLine()">
                         <img src="imgs/design/icons/up-and-down-opposite-double-arrows-side-by-side.png" alt="" />
                     </button>
 
-                    <button class="add line" onclick="onAddLine()">
+                    <button class="btn add line" onclick="onAddLine()">
                         <img src="imgs/design/icons/add.png" alt="" />
                     </button>
 
@@ -51,27 +52,28 @@
                         <img src="imgs/design/icons/trash.png" alt="" />
                     </button>
 
-                    <button class="font-inc" onclick="onChangeFont(this)" data-diff="1">
+                    <button class="btn font-inc" onclick="onChangeFontSize(this)" data-diff="1">
                         <img src="imgs/design/icons/increase font - icon.png" alt="" />
                     </button>
 
-                    <button class="font-dec" onclick="onChangeFont(this)" data-diff="-1">
+                    <button class="btn font-dec" onclick="onChangeFontSize(this)" data-diff="-1">
                         <img src="imgs/design/icons/decrease font - icon.png" alt="" />
                     </button>
 
-                    <button class="btn align-left-btn">
-                        <img src="imgs/design/icons/align-to-left.png" alt="" />
+                    <button class="btn align-left-btn" onclick="onChangeAlign('left')">
+                        <img src="imgs/design/icons/align-to-left.png" alt=""" />
                     </button>
 
-                    <button class="btn align-center-btn">
+                    <button class="btn align-center-btn" onclick="onChangeAlign('center')">
                         <img src="imgs/design/icons/center-text-alignment.png" alt="" />
                     </button>
 
-                    <button class="btn align-right-btn">
+                    <button class="btn align-right-btn" onclick="onChangeAlign('right')">
                         <img src="imgs/design/icons/align-to-right.png" alt="" />
                     </button>
 
-                    <select class="change-font" onchange="">
+                    <select class="change-font" onchange="onChangeFontFamily(this)">
+                        <option value="Impact">Impact</option>
                         <option value="Arial">Arial</option>
                         <option value="Courier New">Courier New</option>
                         <option value="Georgia">Georgia</option>

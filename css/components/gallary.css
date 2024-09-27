@@ -7,5 +7,10 @@
 }
 .gallary-nav {
     background-color: white;
-    padding-block: 2em;
+    padding-block: 1em;
+}
+.gallary-nav .main-nav {
+    flex-direction: column;
+    gap: 0.625em;
+    align-items: start;
 }
