@@ -7,9 +7,10 @@ var gKeywordSearchCountMap
 //*init the model called in the main controller
 function initModel() {
     gImgs = []
+    gKeywordSearchCountMap = {}
     _createImgs()
+    _createKeywordsMap()
     initMeme()
-    gKeywordSearchCountMap = { funny: 12, cat: 16, baby: 2 }
 }
 
 function initMeme() {
@@ -218,11 +219,57 @@ function _createImg(keywords = ['funny', 'cat']) {
 }
 
 function _createImgs() {
-    for (let i = 0; i < gImgCount; i++) {
-        gImgs.push(_createImg())
-    }
+    //1
+    gImgs.push(_createImg(['trump', 'politcal']))
+    //2
+    gImgs.push(_createImg(['dog', 'cute']))
+    //3
+    gImgs.push(_createImg(['cute', 'dogl', 'baby', 'sleep']))
+    //4
+    gImgs.push(_createImg(['cat', 'sleep']))
+    //5
+    gImgs.push(_createImg(['kid', 'winner']))
+    //6
+    gImgs.push(_createImg(['man', 'explain']))
+    //7
+    gImgs.push(_createImg(['baby', 'suprise']))
+    //8
+    gImgs.push(_createImg(['the doctor', 'happy']))
+    //9
+    gImgs.push(_createImg(['baby', 'happy']))
+    //10
+    gImgs.push(_createImg(['obama', 'politcal', 'happy']))
+    //11
+    gImgs.push(_createImg(['kissing']))
+    //12
+    gImgs.push(_createImg(['justice', 'reality-tv']))
+    //13
+    gImgs.push(_createImg(['leonardo', 'movie']))
+    //14
+    gImgs.push(_createImg(['matrix', 'movie']))
+    //15
+    gImgs.push(_createImg(['walking deads', 'zombies']))
+    //16
+    gImgs.push(_createImg(['movie', 'stark-trek']))
+    //17
+    gImgs.push(_createImg(['putin', 'politcal']))
+    //18
+    gImgs.push(_createImg(['toystory', 'movie']))
 }
 
 function _createLine(txt = 'enter line', strokeClr = '#000000', fillClr = '#ffffff', size = 10, fontFamily = 'Impact', align = 'center') {
     return { txt, strokeClr, fillClr, size, fontFamily, pos: null, width: null, isNew: true, align, isDragged: false }
+}
+function _createKeywordsMap() {
+    gKeywordSearchCountMap = gImgs.reduce((accu, img) => {
+        const imgKeyWords = img.keywords.reduce((acc, keyword) => {
+            acc[keyword] = 1
+            return acc
+        }, {})
+        for (let keyword in imgKeyWords) {
+            if (accu[keyword]) accu[keyword] += 1
+            else accu[keyword] = 1
+        }
+        return accu
+    }, {})
 }

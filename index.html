@@ -28,7 +28,11 @@
             <section class="gallary main-layout full">
                 <nav class="gallary-nav main-layout full">
                     <div class="main-nav flex">
-                        <input type="search" class="search-meme" oninput="onSearchMeme" placeholder="search meme" />
+                        <input list="keywords" class="search-meme input" oninput="onFilterMemes(this)" placeholder="search meme" />
+                        <datalist id="keywords" class = 'keywords-datalist'>
+                        
+                        </datalist>
+                        <button onclick = 'onClearSearch()'>clear search</button>
                         <button onclick="onFlexiable()">flexible</button>
                     </div>
                 </nav>
@@ -91,6 +95,11 @@
                     </button>
                     <a href="#" onclick="downloadMeme(this)" download="my-meme.jpg">download Meme</a>
                     <button onclick="onSaveMeme()">save meme</button>
+                    <form action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
+                        <input name="img" id="imgData" type="hidden" />
+                        <button type="submit">Publish</button>
+                        <div class = 'share-container hidden'>
+                    </form>
                 </section>
             </section>
 

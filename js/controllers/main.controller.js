@@ -3,8 +3,8 @@ function onInit() {
     console.log('starting')
     initCanvas()
     initModel()
+    initGallary()
     renderMeme()
-    renderGallary()
     renderSavedMemes()
     initSavedMemes()
 }

@@ -3,7 +3,6 @@ var gSavedMemes = []
 const MEMES_KEY = 'saved memes'
 
 function initSavedMemes() {
-    console.log('hi')
     const MemesFromStorage = loadFromStorage(MEMES_KEY)
     if (MemesFromStorage && MemesFromStorage.length !== 0) {
         console.log('loading-memes from storage')

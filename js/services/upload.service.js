@@ -1,7 +1,7 @@
 function uploadImg(elForm, ev) {
     ev.preventDefault()
 
-    document.getElementById('imgData').value = gCanvas.toDataURL('image/jpeg')
+    document.getElementById('imgData').value = gElCanvas.toDataURL('image/jpeg')
 
     // A function to be called if request succeeds
     function onSuccess(uploadedImgUrl) {
@@ -9,9 +9,13 @@ function uploadImg(elForm, ev) {
 
         uploadedImgUrl = encodeURIComponent(uploadedImgUrl)
         document.querySelector('.share-container').innerHTML = `
-        <a class="w-inline-block social-share-btn fb" href="https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}'); return false;">
-            Share   
+        <a class="w-inline-block social-share-btn fb share-facebook" href="https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}" title="Share on Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}'); return false;">
+             
         </a>`
+        const elShareFacebook = document.querySelector('.share-facebook')
+
+        console.log(elShareFacebook + 'hii this is the elsharefaceboook')
+        elShareFacebook.click()
     }
 
     doUploadImg(elForm, onSuccess)
