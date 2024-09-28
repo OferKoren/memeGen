@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="css/styles.css" />
         <title>Meme generator</title>
+        <script src="https://kit.fontawesome.com/301daa808d.js" crossorigin="anonymous"></script>
     </head>
     <body onload="onInit()" class="main-layout">
         <header class="full main-layout main-header">
@@ -32,8 +34,8 @@
                         <datalist id="keywords" class = 'keywords-datalist'>
                         
                         </datalist>
-                        <button onclick = 'onClearSearch()'>clear search</button>
-                        <button onclick="onFlexiable()">flexible</button>
+                        <button class = 'btn 'onclick = 'onClearSearch()'>clear search</button>
+                        <button class= 'btn' onclick="onFlexiable()">flexible</button>
                     </div>
                 </nav>
                 <section class="gallary-layout main-gallary"></section>
@@ -89,15 +91,29 @@
                         <option value="Verdana">Verdana</option>
                         <option value="monospace">Monospace</option>
                     </select>
+
                     <button class="btn stroke-clr-btn" onclick="onOpenStorkeInput()">
                         <input type="color" class="stroke-clr" oninput="onChangeStrokeColor(this) " />
                         <img src="imgs/design/icons/text stroke.png" alt="" />
                     </button>
-                    <a href="#" onclick="downloadMeme(this)" download="my-meme.jpg">download Meme</a>
-                    <button onclick="onSaveMeme()">save meme</button>
+
+                    <button class="btn fill-clr-btn" onclick="onOpenFillInput()">
+                        <input type="color" class="fill-clr" oninput="onChangeFillColor(this) " />
+                        <img src="imgs/design/icons/paint-board-and-brush.png" alt="" />
+                    </button>
+
+                    <button onclick = 'onDownloadBtn()' class = 'btn download-btn'> <div>
+                        <i class="fa-solid fa-download"></i></button>
+                    </div>
+                    <a href="#" onclick="downloadMeme(this)" download="my-meme.jpg" class = 'hidden download-anchor'>download Meme</a>
+
+                    <button onclick="onSaveMeme()" class = 'btn save-btn'><div>
+                        <i class="fa-solid fa-floppy-disk"></i></button>
+                    </div>
+
                     <form action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
                         <input name="img" id="imgData" type="hidden" />
-                        <button type="submit">Publish</button>
+                        <button onclick = 'onCleanMeme()' type="submit" class = 'btn'><img src="imgs/design/icons/facebook-logo.png" alt=""></button>
                         <div class = 'share-container hidden'>
                     </form>
                 </section>

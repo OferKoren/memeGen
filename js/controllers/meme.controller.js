@@ -99,6 +99,18 @@ function onOpenStorkeInput() {
     const elStorke = document.querySelector('.stroke-clr')
     elStorke.click()
 }
+//*change fill color when fill input changes
+function onChangeFillColor({ value }) {
+    //*value in this situation is the stroke clr from the input
+    changeFill(value)
+    renderMeme()
+}
+
+//*open the fill color input when button clicked - required because we want a button to open an input
+function onOpenFillInput() {
+    const elFill = document.querySelector('.fill-clr')
+    elFill.click()
+}
 
 //*change font size
 function onChangeFontSize({ dataset }) {
@@ -131,7 +143,16 @@ function onSwitchLine(isNew = 'not new', idx) {
     switchLine(isNew, idx)
     renderLineProperties()
 }
-
+//*activate the hidden link when button clicked
+function onDownloadBtn() {
+    const elDownloadLink = document.querySelector('.download-anchor')
+    elDownloadLink.click()
+}
+function onCleanMeme() {
+    const meme = getMeme()
+    meme.selectedLineIdx = null
+    renderMeme()
+}
 //*render all the current setting of a specific line
 function renderLineProperties() {
     const eltxt = document.querySelector('.editor-txt')

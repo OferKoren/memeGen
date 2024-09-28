@@ -37,7 +37,7 @@ body.main-layout {
     display: grid;
     grid-template-columns: repeat(5, 3fr);
     grid-auto-flow: row;
-    gap: 0.2em;
+    /* gap: 0.2em; */
     align-items: start;
 }
 .control-panel-layout .editor-txt {
@@ -51,4 +51,7 @@ body.main-layout {
 }
 .control-panel-layout .change-font {
     grid-column: 1 / span 3;
+}
+.control-panel-layout .download-btn {
+    grid-column: 2;
 }
