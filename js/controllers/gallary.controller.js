@@ -9,19 +9,22 @@ function renderGallary() {
     elMainGallary.innerHTML = strHtml.join('')
 }
 
-function onImgSelect({ dataset }) {
+function onImgSelect({ dataset }, isEdited = false) {
     initMeme()
     resizeCanvas()
     const elMemeEditoer = document.querySelector('.meme-editor ')
     const elGallary = document.querySelector('.gallary')
+    const elSaved = document.querySelector('.saved')
     const elSelected = document.querySelector('.selected')
 
     elMemeEditoer.classList.remove('hidden')
     elGallary.classList.add('hidden')
+    elSaved.classList.add('hidden')
     elSelected.classList.remove('selected')
 
     if (dataset !== null) {
         imgSelect(+dataset.id)
+    } else if (isEdited) {
     } else {
         const randImgId = getRandomIntInclusive(1, gImgCount)
         imgSelect(randImgId)
@@ -33,10 +36,15 @@ function onFlexiable() {
     onImgSelect({ dataset: null })
 }
 function onGallary(elGallaryLink) {
+    const elSelected = document.querySelector('.selected')
+    if (elSelected) elSelected.classList.remove('selected')
+
     elGallaryLink.classList.add('selected')
     const elMemeEditoer = document.querySelector('.meme-editor ')
     const elGallary = document.querySelector('.gallary')
+    const elSaved = document.querySelector('.saved')
 
     elMemeEditoer.classList.add('hidden')
+    elSaved.classList.add('hidden')
     elGallary.classList.remove('hidden')
 }

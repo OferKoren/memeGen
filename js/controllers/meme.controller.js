@@ -13,12 +13,12 @@ function initCanvas() {
 }
 
 //*render the meme
-function renderMeme() {
+function renderMeme(Savedmeme) {
     // clearCanvas()
     // console.log('render meme')
-    const meme = getMeme()
+    const meme = Savedmeme || getMeme()
     const img = getImgById(meme.selectedImgId)
-    drawMeme(img.url)
+    drawMeme(img.url, meme)
 }
 
 //*resize the canvas
@@ -32,7 +32,7 @@ function resizeCanvas() {
 }
 
 //* draw on the canvas the img of the the meme called in renderMeme
-function drawMeme(url) {
+function drawMeme(url, meme) {
     const ElImg = new Image()
     ElImg.src = url
 
@@ -41,13 +41,13 @@ function drawMeme(url) {
         resizeCanvas()
         gCtx.drawImage(ElImg, 0, 0, gElCanvas.width, gElCanvas.height)
         //*drawing the lines after the img finish to load so it wont be behind the txt
-        drawLines()
+        drawLines(meme)
     }
 }
 
 //*draw the lines of the meme on th canvas called in draw meme so it will happen after img finish loading
-function drawLines() {
-    const { lines, selectedLineIdx, width } = getMeme()
+function drawLines(meme) {
+    const { lines, selectedLineIdx, width } = meme || getMeme()
 
     lines.forEach((line, idx) => {
         const { fillClr, strokeClr, txt, size, fontFamily } = line
@@ -119,6 +119,10 @@ function onAddLine() {
     renderMeme()
 
     onSwitchLine('new')
+
+    //focus on the txt input
+    const elTxtInput = document.querySelector('.editor-txt')
+    elTxtInput.focus()
 }
 
 //*focus on a different line
@@ -175,6 +179,24 @@ function onDeleteLine() {
     renderMeme()
 }
 
+//* save meme
+function onSaveMeme() {
+    //todo open dialog to enter meme name
+    const meme = getMeme()
+    meme.selectedLineIdx = null
+    renderMeme()
+
+    setTimeout(() => {
+        if (meme.id) {
+            updateSavedMeme(meme.id)
+
+            return
+        }
+        const memeName = prompt('enter meme name')
+        saveMeme(memeName)
+    }, 10)
+}
+
 //*eventListeners and helpers for event handling
 function addListeners() {
     addMouseListeners()
@@ -201,8 +223,11 @@ function onDown(ev) {
 
     document.body.style.cursor = 'grabbing'
     const { lines } = getMeme()
+
     lines[lineIdx].isDragged = true
+
     gPreviousPos = posToRelative(downPos)
+
     onSwitchLine('not new', lineIdx)
 }
 
@@ -231,11 +256,18 @@ function onMove(ev) {
     }
 }
 
-function onUp() {
+function onUp(ev) {
     const { lines, selectedLineIdx } = getMeme()
     if (selectedLineIdx !== null) lines[selectedLineIdx].isDragged = false
+
+    const lineIdx = isOnLine(getEvPos(ev))
+    if (lineIdx !== -1) {
+        const elTxtInput = document.querySelector('.editor-txt')
+        elTxtInput.focus()
+    }
 }
 
+function onClick() {}
 function addMouseListeners() {
     gElCanvas.addEventListener('mousedown', onDown)
     gElCanvas.addEventListener('mousemove', onMove)

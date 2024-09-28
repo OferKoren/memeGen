@@ -199,6 +199,14 @@ function setLineWidth(line, width) {
     line.width = width
 }
 
+function saveMeme(memeName) {
+    const savedMemes = getSavedMemes()
+    const meme = getMeme()
+    savedMemes.push({ id: makeid(), name: memeName, meme: meme, memeDataURL: gElCanvas.toDataURL() })
+    saveMemesToStorage()
+    // saveMemesToStorage()
+}
+
 //private functions
 
 function _createImg(keywords = ['funny', 'cat']) {

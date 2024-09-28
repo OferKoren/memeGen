@@ -9,10 +9,14 @@
     <body onload="onInit()" class="main-layout">
         <header class="full main-layout main-header">
             <div class="header-content flex space-between">
-                <img src="imgs/design/LOGO.png" alt="" class="logo" />
+                <div class="logo-container">
+                    <img src="imgs/design/LOGO.png" alt="" class="logo" />
+                </div>
                 <nav class="header-nav">
                     <ul class="clean-list flex align-center">
                         <li><a href="#" class="selected" onclick="onGallary(this)">gallary</a></li>
+                        <li>|</li>
+                        <li><a href="#" class="" onclick="onSaved(this)">saved-mems</a></li>
                         <li>|</li>
                         <li><a href="#" class="">about</a></li>
                     </ul>
@@ -86,7 +90,12 @@
                         <img src="imgs/design/icons/text stroke.png" alt="" />
                     </button>
                     <a href="#" onclick="downloadMeme(this)" download="my-meme.jpg">download Meme</a>
+                    <button onclick="onSaveMeme()">save meme</button>
                 </section>
+            </section>
+
+            <section class="saved hidden">
+                <section class="gallary-layout main-gallary main-saved"></section>
             </section>
         </main>
         <footer class="main-footer main-layout full">
@@ -97,10 +106,12 @@
         </footer>
         <script src="js/services/upload.service.js"></script>
         <script src="js/services/storage.service.js"></script>
+        <script src="js/services/saved.service.js"></script>
         <script src="js/services/utils.service.js"></script>
         <script src="js/services/meme.service.js"></script>
         <script src="js/controllers/meme.controller.js"></script>
         <script src="js/controllers/gallary.controller.js"></script>
+        <script src="js/controllers/saved.controller.js"></script>
         <script src="js/controllers/main.controller.js"></script>
     </body>
 </html>

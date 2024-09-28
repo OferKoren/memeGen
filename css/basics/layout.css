@@ -1,3 +1,11 @@
+body.main-layout {
+    display: grid;
+    grid-template-columns:
+        minmax(30px, 1fr)
+        minmax(auto, 980px)
+        minmax(30px, 1fr);
+    grid-template-rows: auto minmax(auto, 1fr) auto;
+}
 .main-layout {
     display: grid;
     grid-template-columns:

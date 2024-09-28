@@ -5,4 +5,6 @@ function onInit() {
     initModel()
     renderMeme()
     renderGallary()
+    renderSavedMemes()
+    initSavedMemes()
 }
